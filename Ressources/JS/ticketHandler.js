@@ -1,3 +1,20 @@
+$('#editTicketButton').on('click', function(e) {
+    e.preventDefault();
+
+    var url = "/Ressources/requestHandler.php";
+        
+    // Performing the post
+    var formElement = document.querySelector("#editTicketForm");
+    var formData = new FormData(formElement);
+    var request = new XMLHttpRequest();
+    request.open("POST", url);
+    formData.append("controller", "TicketController");
+    formData.append("methodName", "EditCustomer");
+    request.send(formData);
+    
+    $('#post-response').append('<div class="alert alert-success"><p>Customer updated!</p></div>');
+    
+});
 
 $('.removeTicketForm').on('submit', function(e) {
     e.preventDefault();

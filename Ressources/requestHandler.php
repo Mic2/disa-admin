@@ -146,6 +146,10 @@ if($controller == "TicketController") {
     if($methodToCall == "RemoveTicketById") { 
         $tc->RemoveTicketById($_POST['ticketId']);
     }
+    
+    if($methodToCall == "EditCustomer") { 
+        $tc->EditCustomer($_POST['customerPhoneNumber'], $_POST['customerName']);
+    }
 
 }
 

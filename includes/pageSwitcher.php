@@ -18,6 +18,9 @@
         case 'edit-movie':
             include ('/views/editMovie.php');
             break;
+        case 'edit-ticket':
+            include ('/views/editTicket.php');
+            break;
         case 'insert-movie':
             include ('/views/insertMovie.php');
             break;

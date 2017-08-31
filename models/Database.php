@@ -145,6 +145,32 @@ class Database {
         return $tickets;
     }
     
+    public function GetTicketById($ticketId) {
+        $query = "SELECT * FROM Ticket INNER JOIN Customer ON Ticket.FK_phoneNumber = Customer.PK_phoneNumber INNER JOIN ShowTime ON Ticket.FK_showTimeId = ShowTime.PK_showTimeId INNER JOIN Seat ON Ticket.FK_seatId = Seat.PK_seatId INNER JOIN Line ON Seat.FK_lineId = Line.PK_lineId INNER JOIN Theater ON Line.FK_theaterNumber = Theater.PK_theaterNumber WHERE Ticket.PK_ticketID = ".$ticketId."";
+        $result = mysqli_query($this->con, $query);
+        $ticketsInformation = mysqli_fetch_object($result);
+        $ticket = new Ticket();
+        $ticket->SetCustomerName($ticketsInformation->fullName);
+        $ticket->SetLineNumber($ticketsInformation->lineNumber);
+        $ticket->SetMovieName($ticketsInformation->FK_movieName);
+        $ticket->SetPhoneNumber($ticketsInformation->PK_phoneNumber);
+        $ticket->SetSeatNumber($ticketsInformation->seatNumber);
+        $ticket->SetShowTime($ticketsInformation->FK_time);
+        $ticket->SetTheaterNumber($ticketsInformation->FK_theaterNumber);
+        $ticket->SetTicketId($ticketsInformation->PK_ticketID);
+            
+        $result->close(); 
+    
+        return $ticket;
+    }
+    
+    public function EditCustomer($customerPhoneNumber, $customerFullName) {
+        $query = $this->con->prepare("UPDATE Customer SET PK_phoneNumber=?, fullName=? WHERE PK_phoneNumber=?");
+        $query->bind_param("isi", $customerPhoneNumber, $customerFullName, $customerPhoneNumber);
+        $query->execute();
+        $query->close(); 
+    }
+        
     public function RemoveTicket($ticketId) {
         $query = "DELETE FROM Ticket WHERE PK_ticketID='".$ticketId."'";
         mysqli_query($this->con, $query);
@@ -157,11 +183,14 @@ class Database {
     
 }
 // TEST
-/*$db = new Database();
-$movie = new Movie();
+$db = new Database();
+/*$movie = new Movie();
 $movie->SetMovieName("Megan Leavey");
 $movie->SetDescription("test");
 $movie->SetConverImage("dont-update");
 $movie->SetRunTime(120);
 $movie->SetType("premiere");
-$r = $db->EditMovie($movie, "mega 2");*/
+
+$r = $db->GetTicketById(12);
+print_r($r->GetCustomerName());
+*/

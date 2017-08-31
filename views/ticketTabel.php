@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/TicketController.php');
 $tc = new TicketController();
 // print_r($tc->GetAllTickets());
 ?>
-<h1>Edit movies tabel</h1>
+<h1>Edit tickets tabel</h1>
 <table class="table table-striped table-bordered">
     <thead>
     <th>Movie names</th>
@@ -27,7 +27,7 @@ $tc = new TicketController();
             <td><?php echo $ticket->GetSeatNumber(); ?></td>
             <td><?php echo $ticket->GetCustomerName(); ?></td>
             <td><?php echo $ticket->GetPhoneNumber(); ?>
-            <td><form><button class="btn btn-warning" formaction="edit-movie&movieName=<?php echo  $ticket->GetTicketId(); ?>">Edit</button></form></td>
+            <td><form><button class="btn btn-warning" formaction="edit-ticket&ticketId=<?php echo  $ticket->GetTicketId(); ?>">Edit</button></form></td>
             <td><form class="removeTicketForm"><button class="btn btn-danger removeTicketFormButton" data-ticket-id="<?php echo $ticket->GetTicketId(); ?>">Delete</button></form></td>
         </tr>
         <?php } ?>
