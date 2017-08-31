@@ -128,19 +128,6 @@ if($methodToCall == "EditMovie") {
         }
         $count = $count + 1;
     }  
-    
-    /*foreach ($showTimes as $index => $dateTime) {
-        // if the user has inserted new showtimes we will add them, otherwise we update them.
-        if($showTimesIds[$index] == 'not-set') {
-           $emc->CheckShowTimeExist($dateTime);
-           $emc->InsertShowTime($movie->GetMovieName(), $dateTime, $theaterNumber[$count]); 
-        }  
-        else {
-            $emc->CheckShowTimeExist($dateTime);
-            $emc->UpdateShowTimeById($showTimeIds[$count], $dateTime, $theaterNumber[$count]);
-        }
-        $count = $count + 1;
-    }*/  
 }
 
 /*Movie controller end*/
