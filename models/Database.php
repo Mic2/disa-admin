@@ -2,6 +2,7 @@
 // This page has an array of db access info, wich is not included in git repository
 require_once($_SERVER['DOCUMENT_ROOT'].'/Ressources/dbAccess.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/models/Movie.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/Ticket.php');
 
 class Database {
     
@@ -121,9 +122,34 @@ class Database {
         mysqli_query($this->con, $query);
     }
       
-    public function GetAllTickets() {
+    public function GetAllTicketInformation() {
+        $query = "SELECT * FROM Ticket INNER JOIN Customer ON Ticket.FK_phoneNumber = Customer.PK_phoneNumber INNER JOIN ShowTime ON Ticket.FK_showTimeId = ShowTime.PK_showTimeId INNER JOIN Seat ON Ticket.FK_seatId = Seat.PK_seatId INNER JOIN Line ON Seat.FK_lineId = Line.PK_lineId INNER JOIN Theater ON Line.FK_theaterNumber = Theater.PK_theaterNumber ORDER BY Customer.fullName";
+        $result = mysqli_query($this->con, $query);
+        $tickets = array();
         
+        while($ticketsInformation = mysqli_fetch_object($result)) {
+            $ticket = new Ticket();
+            $ticket->SetCustomerName($ticketsInformation->fullName);
+            $ticket->SetLineNumber($ticketsInformation->lineNumber);
+            $ticket->SetMovieName($ticketsInformation->FK_movieName);
+            $ticket->SetPhoneNumber($ticketsInformation->PK_phoneNumber);
+            $ticket->SetSeatNumber($ticketsInformation->seatNumber);
+            $ticket->SetShowTime($ticketsInformation->FK_time);
+            $ticket->SetTheaterNumber($ticketsInformation->FK_theaterNumber);
+            $ticket->SetTicketId($ticketsInformation->PK_ticketID);
+            
+            array_push($tickets, $ticket);
+        }
+        $result->close(); 
+    
+        return $tickets;
     }
+    
+    public function RemoveTicket($ticketId) {
+        $query = "DELETE FROM Ticket WHERE PK_ticketID='".$ticketId."'";
+        mysqli_query($this->con, $query);
+    }
+    
     
     public function CloseConnection() {
         $this->con->close();

@@ -3,6 +3,7 @@
 
 /* Getting all of the controllers */
 require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/MovieController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/TicketController.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/models/Movie.php');
 
 $controller = $_POST['controller'];
@@ -136,5 +137,15 @@ if($methodToCall == "RemoveMovie") {
 }
 
 /*Movie controller end*/
+}
+
+if($controller == "TicketController") {
+    
+    $tc = new TicketController();
+    
+    if($methodToCall == "RemoveTicketById") { 
+        $tc->RemoveTicketById($_POST['ticketId']);
+    }
+
 }
 

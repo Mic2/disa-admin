@@ -12,6 +12,9 @@
         case 'edit-movie-tabel':
             include ('/views/editMovieTabel.php');
             break;
+        case 'edit-ticket-tabel':
+            include ('/views/ticketTabel.php');
+            break;
         case 'edit-movie':
             include ('/views/editMovie.php');
             break;

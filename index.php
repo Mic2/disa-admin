@@ -21,6 +21,7 @@ and open the template in the editor.
                     <a href="statistics">Home</a>
                     <a href="insert-movie">Insert movie</a>
                     <a href="edit-movie-tabel">Show movies</a>
+                    <a href="edit-ticket-tabel">Show tickets</a>
                 </div>
                 <div id="site-headline" class="col-md-10">
                     <h1>DISA Bio Administration</h1>
@@ -37,4 +38,5 @@ and open the template in the editor.
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="Ressources/JS/movieHandler.js"></script>
+    <script type="text/javascript" src="Ressources/JS/ticketHandler.js"></script>
 </html>
