@@ -95,7 +95,27 @@ class Database {
         $query = "DELETE FROM ShowTime WHERE PK_showTimeId='".$showTimeId."'";
         mysqli_query($this->con, $query);
     }
-     
+    
+    public function EditMovie($movie, $movieNameToEdit) {
+        // If the user didnt want to change cover image we check for it here.
+        if($movie->GetCoverImage() == 'dont-update') {
+            $query = $this->con->prepare("UPDATE Movie SET PK_movieName=?, FK_type=?, runTime=?, description=? WHERE PK_movieName=?");
+            $query->bind_param("ssiss", $movie->GetMovieName(), $movie->GetType(), $movie->GetRunTime(), $movie->GetDescription(), $movieNameToEdit);
+        } else {
+            $query = $this->con->prepare("UPDATE Movie SET PK_movieName=?, FK_type=?, runTime=?, description=?, coverImage=? WHERE PK_movieName=?");
+            $query->bind_param("ssisss", $movie->GetMovieName(), $movie->GetType(), $movie->GetRunTime(), $movie->GetDescription(), $movie->GetCoverImage(), $movieNameToEdit); 
+        }
+        $query->execute();
+        $query->close();  
+    }
+    
+    public function UpdateShowTimeById($showTimeId, $dateTime, $theaterNumber) {
+        $query = $this->con->prepare("UPDATE ShowTime SET FK_theaterNumber=?, FK_time=? WHERE PK_showTimeId=?");
+        $query->bind_param("isi", $theaterNumber, $dateTime, $showTimeId);
+        $query->execute();
+        $query->close(); 
+    }
+      
     public function CloseConnection() {
         $this->con->close();
     }
@@ -103,6 +123,11 @@ class Database {
     
 }
 // TEST
-$db = new Database();
-
-$r = $db->RemoveShowTimeById(30);
+/*$db = new Database();
+$movie = new Movie();
+$movie->SetMovieName("Megan Leavey");
+$movie->SetDescription("test");
+$movie->SetConverImage("dont-update");
+$movie->SetRunTime(120);
+$movie->SetType("premiere");
+$r = $db->EditMovie($movie, "mega 2");*/

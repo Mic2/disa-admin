@@ -20,8 +20,8 @@
             </div>
             <div id="multiShowTimeInputWrapper" class="form-group">
                 <label for="showtimeInput">ShowTime: YYYY-MM-DD HH:MI:SS - Sal: 1-10</label>
-                <input id="showtimeInput" type="datetime" name="showtime[]" class="form-control" placeholder="YYYY-MM-DD HH:MI:SS" />
-                <input id="showtimeTheaterInput" type="number" name="theater[]" class="form-control" placeholder="1-10"/>
+                <input type="datetime" name="showtime[]" class="form-control showtimeInput" placeholder="YYYY-MM-DD HH:MI:SS" />
+                <input type="number" name="theater[]" class="form-control showtimeTheaterInput" placeholder="1-10"/>
             </div>
             <!--These buttons is controlled by JS-->
             <button id="addShowTimeToForm" class="btn btn-success">Add show time</button>

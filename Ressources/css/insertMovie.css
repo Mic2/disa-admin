@@ -6,12 +6,12 @@
     margin-bottom: 20px;
 }
 
-#showtimeInput {
+.showtimeInput {
     display: inline-block;
     max-width: 80%;
 }
 
-#showtimeTheaterInput, #theaterNumberInput {
+.showtimeTheaterInput, .theaterNumberInput {
     display: inline-block;
     max-width: 80px;
 }
@@ -25,12 +25,8 @@
 }
 
 
-.input-remove-group input {
-    max-width: 80%;
-}
-
-
 .input-remove-group img, .input-remove-group input {
     display: inline;
+    margin-left: 2px;
 }
 

@@ -1,17 +1,17 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/editMovieController.php');
-$editController = new EditMovieController();
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/MovieController.php');
+$editController = new MovieController();
 $movieDetails = $editController->GetMovieDetails(rawurldecode($_GET['movieName']));
 
 ?>
 <h1>Edit - <?php echo $movieDetails['movie']->GetMovieName(); ?></h1>
 <div id="post-response"></div>
 <div class="row">
-    <form id="insertMovieForm" method="post" enctype="multipart/form-data">
+    <form id="editMovieForm" method="post" enctype="multipart/form-data">
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="movieNameInput">Movie name:</label>
-                <input id="movieNameInput" type="text" name="movieName" placeholder="Movie name" class="form-control" value="<?php echo $movieDetails['movie']->GetMovieName(); ?>" />
+                <div id="movieToEdit"></div>
+                <input id="movieNameInput" data-movie-to-edit="<?php echo $movieDetails['movie']->GetMovieName(); ?>" type="text" name="movieName" placeholder="Movie name" class="form-control" value="<?php echo $movieDetails['movie']->GetMovieName(); ?>" />
             </div>
             <div class="form-group">
                 <label for="movieTypeSelect">Movie type:</label>
@@ -30,12 +30,12 @@ $movieDetails = $editController->GetMovieDetails(rawurldecode($_GET['movieName']
                 <?php foreach($movieDetails['time'] as $index => $time) { ?>
                 
                     <?php if($index == 0) { ?>
-                        <input id="showtimeInput" type="datetime" name="showtime[]" class="form-control" placeholder="YYYY-MM-DD HH:MI:SS" value="<?php echo $time; ?>" />                
-                        <input id="showtimeTheaterInput" type="number" name="theater[]" class="form-control" placeholder="1-10" value="<?php echo $movieDetails['theater'][$index]; ?>" />
+                        <input data-showtime-id="<?php echo $movieDetails['showtimeid'][$index] ?>" type="datetime" name="showtime[]" class="form-control showtimeInput" placeholder="YYYY-MM-DD HH:MI:SS" value="<?php echo $time; ?>" />                
+                        <input type="number" name="theater[]" class="form-control showtimeTheaterInput" placeholder="1-10" value="<?php echo $movieDetails['theater'][$index]; ?>" />
                     <?php } else { ?>
                         <span class="input-remove-group" data-showtime-id="<?php echo $movieDetails['showtimeid'][$index] ?>">
-                            <input id="showtimeInput" type="datetime" name="showtime[]" class="form-control" placeholder="YYYY-MM-DD HH:MI:SS" value="<?php echo $time; ?>" />                
-                            <input id="showtimeTheaterInput" type="number" name="theater[]" class="form-control" placeholder="1-10" value="<?php echo $movieDetails['theater'][$index]; ?>" />
+                            <input data-showtime-id="<?php echo $movieDetails['showtimeid'][$index] ?>" type="datetime" name="showtime[]" class="form-control showtimeInput" placeholder="YYYY-MM-DD HH:MI:SS" value="<?php echo $time; ?>" />                
+                            <input type="number" name="theater[]" class="form-control showtimeTheaterInput" placeholder="1-10" value="<?php echo $movieDetails['theater'][$index]; ?>" />
                             <img src="/Ressources/images/Delete-128.png" />
                         </span>
                     <?php } } ?>              
@@ -49,7 +49,7 @@ $movieDetails = $editController->GetMovieDetails(rawurldecode($_GET['movieName']
             </div>
             <!--Tell the user to leav empty if they wonna keep it.-->
             <div class="form-group">
-                <input type="submit" id="UpdateMovieButton" name="submitMovieCreation" class="btn btn-primary" />             
+                <input type="submit" id="EditMovieButton" name="submitMovieCreation" class="btn btn-primary" />             
             </div>
         </div>
         <div class="col-md-6"> 

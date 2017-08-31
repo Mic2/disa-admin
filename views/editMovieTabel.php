@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/editMovieController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/MovieController.php');
 
-$editController = new EditMovieController();
+$editController = new MovieController();
 
 ?>
 <h1>Edit movies tabel</h1>
