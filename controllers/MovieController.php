@@ -55,5 +55,11 @@ class MovieController {
         $db->CloseConnection();
     }
     
+    public function RemoveMovie($movieName){
+        $db = new Database();
+        $db->RemoveMovie($movieName);
+        $db->CloseConnection();
+    }
+    
 }
 

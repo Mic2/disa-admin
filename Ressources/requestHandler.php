@@ -130,6 +130,11 @@ if($methodToCall == "EditMovie") {
     }  
 }
 
+if($methodToCall == "RemoveMovie") {
+    $emc = new MovieController();
+    $emc->RemoveMovie($_POST['movieName']);
+}
+
 /*Movie controller end*/
 }
 

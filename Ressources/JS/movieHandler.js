@@ -69,9 +69,34 @@ $('#EditMovieButton').on('click', function(e) {
     
 });
 
+$('.removeMovieForm').on('submit', function(e) {
+    e.preventDefault();
+    if (confirm('Are you sure you want to delete this item from the database completly?')) {
+        RemoveMovieByMovieName($(this).children().data('movie-name'));
+        $(this).parent().parent().remove();
+    }
+});
+
 function RemoveShowTimeById(showTimeId) {
     
     var data = {controller: 'MovieController', methodName: 'RemoveShowTimeById', showTimeId:showTimeId};
+
+    // Lets make the controller delete the record in db
+    $.ajax({
+        url: "/Ressources/requestHandler.php",
+        type: 'POST',
+        data: data,
+        dataType: 'application/json',
+        format: 'json',
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+function RemoveMovieByMovieName(movieName) {
+    
+    var data = {controller: 'MovieController', methodName: 'RemoveMovie', movieName:movieName};
 
     // Lets make the controller delete the record in db
     $.ajax({

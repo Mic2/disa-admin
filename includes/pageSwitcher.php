@@ -1,6 +1,6 @@
 <?php       
     if(!isset($_GET['page'])) {
-        include ('/views/frontpage.php');
+        include ('/views/statistics.php');
     }
     else {
         

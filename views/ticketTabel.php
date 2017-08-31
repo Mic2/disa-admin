@@ -16,7 +16,7 @@ $editController = new MovieController();
         <tr>
             <td><?php echo $movieName->PK_movieName; ?></td>
             <td><form><button class="btn btn-warning" formaction="edit-movie&movieName=<?php echo $movieName->PK_movieName; ?>">Edit</button></form></td>
-            <td><form class="removeMovieForm"><button class="btn btn-danger removeMovieFormButton" data-movie-name="<?php echo $movieName->PK_movieName; ?>">Delete</button></form></td>
+            <td><button class="btn btn-danger">Delete</button></td>
         </tr>
         <?php } ?>
     </tbody>

@@ -115,11 +115,19 @@ class Database {
         $query->execute();
         $query->close(); 
     }
+    
+    public function RemoveMovie($movieName) {
+        $query = "DELETE FROM Movie WHERE PK_movieName='".$movieName."'";
+        mysqli_query($this->con, $query);
+    }
       
+    public function GetAllTickets() {
+        
+    }
+    
     public function CloseConnection() {
         $this->con->close();
     }
-    
     
 }
 // TEST
