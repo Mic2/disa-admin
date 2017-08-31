@@ -14,7 +14,7 @@ $sc = new StatisticsController();
         <?php foreach($sc->GetAllMovieShowTimesTicketReservations() as $movieName => $showTime) { ?>
         <tr>
             <td><?php echo $movieName; ?></td>
-            <td><?php echo $showTime[0]; ?></td>
+            <td><?php foreach (array_unique($showTime) as $time) { echo $time; } ?></td>
             <td><?php echo count($showTime); ?></td>
         </tr>
         <?php } ?>
