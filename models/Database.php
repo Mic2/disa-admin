@@ -176,6 +176,19 @@ class Database {
         mysqli_query($this->con, $query);
     }
     
+    public function GetAllMovieShowTimesTicketReservations() {
+        $query = "SELECT * FROM ShowTime INNER JOIN Ticket ON ShowTime.PK_showTimeId = Ticket.FK_showTimeId";
+        $result = mysqli_query($this->con, $query);
+
+        $movieNameStats = array();
+        while($statistics = mysqli_fetch_object($result)) {        
+           $movieNameStats[$statistics->FK_movieName][] = $statistics->FK_time;
+        }
+        $result->close(); 
+        
+        return $movieNameStats;
+    }
+    
     
     public function CloseConnection() {
         $this->con->close();
@@ -183,14 +196,16 @@ class Database {
     
 }
 // TEST
-$db = new Database();
-/*$movie = new Movie();
+/*$db = new Database();
+$movie = new Movie();
 $movie->SetMovieName("Megan Leavey");
 $movie->SetDescription("test");
 $movie->SetConverImage("dont-update");
 $movie->SetRunTime(120);
 $movie->SetType("premiere");
 
-$r = $db->GetTicketById(12);
-print_r($r->GetCustomerName());
+$r = $db->GetAllMovieShowTimesTicketReservations();
+echo '<pre>';
+print_r($r);
+echo '</pre>';
 */
