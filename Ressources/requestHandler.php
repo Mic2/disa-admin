@@ -3,6 +3,7 @@
 
 /* Getting all of the controllers */
 require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/insertMovieController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/editMovieController.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/models/Movie.php');
 
 $controller = $_POST['controller'];
@@ -58,9 +59,22 @@ if($controller == "insertMovie") {
             $imc->CheckShowTimeExist($dateTime);
             $imc->InsertShowTime($movie->GetMovieName(), $dateTime, $theaterNumber[$count]);
             $count = $count + 1;
-        }
+        }  
+    }
+}
 
+/*Check if we have the insertMovieController*/
+if($controller == "editMovie") {
+    
+    if($methodToCall == "RemoveShowTimeById") {
+
+    // Instanciate the Controller
+        $emc = new EditMovieController();
+        $emc->RemoveShowTimeById($_POST['showTimeId']);
+        
+        
         
     }
+
 }
 

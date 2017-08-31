@@ -27,18 +27,29 @@ $movieDetails = $editController->GetMovieDetails(rawurldecode($_GET['movieName']
             <!--Make somekind of foreach here-->
             <div id="multiShowTimeInputWrapper" class="form-group">
                 <label for="showtimeInput">ShowTime: YYYY-MM-DD HH:MI:SS - Sal: 1-10</label>
-                <input id="showtimeInput" type="datetime" name="showtime[]" class="form-control" placeholder="YYYY-MM-DD HH:MI:SS" />
-                <input id="showtimeTheaterInput" type="number" name="theater[]" class="form-control" placeholder="1-10" value="<?php echo $movieDetails['theater']; ?>"/>
+                <?php foreach($movieDetails['time'] as $index => $time) { ?>
+                
+                    <?php if($index == 0) { ?>
+                        <input id="showtimeInput" type="datetime" name="showtime[]" class="form-control" placeholder="YYYY-MM-DD HH:MI:SS" value="<?php echo $time; ?>" />                
+                        <input id="showtimeTheaterInput" type="number" name="theater[]" class="form-control" placeholder="1-10" value="<?php echo $movieDetails['theater'][$index]; ?>" />
+                    <?php } else { ?>
+                        <span class="input-remove-group" data-showtime-id="<?php echo $movieDetails['showtimeid'][$index] ?>">
+                            <input id="showtimeInput" type="datetime" name="showtime[]" class="form-control" placeholder="YYYY-MM-DD HH:MI:SS" value="<?php echo $time; ?>" />                
+                            <input id="showtimeTheaterInput" type="number" name="theater[]" class="form-control" placeholder="1-10" value="<?php echo $movieDetails['theater'][$index]; ?>" />
+                            <img src="/Ressources/images/Delete-128.png" />
+                        </span>
+                    <?php } } ?>              
             </div>
             <!--These buttons is controlled by JS-->
             <button id="addShowTimeToForm" class="btn btn-success">Add show time</button>
             <div class="form-group">
                 <label for="coverImageInput">Select cover image</label>
                 <input id="coverImageInput" type="file" name="coverImage" class="" />
+                <small>If you want to keep the already choosen image then leave this blank.</small>
             </div>
             <!--Tell the user to leav empty if they wonna keep it.-->
             <div class="form-group">
-                <input type="submit" id="InsertMovieButton" name="submitMovieCreation" class="btn btn-primary" />
+                <input type="submit" id="UpdateMovieButton" name="submitMovieCreation" class="btn btn-primary" />             
             </div>
         </div>
         <div class="col-md-6"> 

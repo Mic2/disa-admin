@@ -33,24 +33,32 @@ class Database {
     }    
     
     public function GetMovieDetails($movieName) {
+        $movieTime = array();
+        $movieTheaterNumber = array();
+        $movieShowTimeId = array();
+        $movie = new Movie();
+              
         $query = "SELECT * FROM ((Movie INNER JOIN MovieType ON Movie.FK_type = MovieType.PK_type) INNER JOIN ShowTime ON Movie.PK_movieName = ShowTime.FK_movieName) WHERE Movie.PK_movieName = '" . $movieName . "'";
         $result = mysqli_query($this->con, $query);
-        $movieDetails = mysqli_fetch_object($result);
+        
+        while($movieDetails = mysqli_fetch_object($result)) {
+            $movie->SetMovieName($movieDetails->PK_movieName);
+            $movie->SetType($movieDetails->FK_type);
+            $movie->SetRunTime($movieDetails->runTime);
+            $movie->SetDescription($movieDetails->description);
+            $movie->SetConverImage($movieDetails->coverImage);
+            array_push($movieTime, $movieDetails->FK_time);
+            array_push($movieTheaterNumber, $movieDetails->FK_theaterNumber);
+            array_push($movieShowTimeId, $movieDetails->PK_showTimeId);
+        }
         $result->close();
-                
-        $movie = new Movie();
-        $movie->SetMovieName($movieDetails->PK_movieName);
-        $movie->SetType($movieDetails->FK_type);
-        $movie->SetRunTime($movieDetails->runTime);
-        $movie->SetDescription($movieDetails->description);
-        $movie->SetConverImage($movieDetails->coverImage);
         
         $movieDetailsToReturn = array(
             'movie' => $movie,
-            'showtime' => $movieDetails->PK_showTimeId,
-            'theater' => $movieDetails->FK_theaterNumber,
-            'time' => $movieDetails->FK_time,
-        );
+            'showtimeid' => $movieShowTimeId,
+            'theater' => $movieTheaterNumber,
+            'time' => $movieTime,
+        );        
         return $movieDetailsToReturn;
     }
     
@@ -82,6 +90,11 @@ class Database {
         $query->execute();
         $query->close();  
     }
+    
+    public function RemoveShowTimeById($showTimeId) {
+        $query = "DELETE FROM ShowTime WHERE PK_showTimeId='".$showTimeId."'";
+        mysqli_query($this->con, $query);
+    }
      
     public function CloseConnection() {
         $this->con->close();
@@ -90,6 +103,6 @@ class Database {
     
 }
 // TEST
-/*$db = new Database();
+$db = new Database();
 
-$r = $db->GetMovieDetails(rawurldecode("Megan%20Leavey"));*/
+$r = $db->RemoveShowTimeById(30);

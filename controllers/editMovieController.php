@@ -18,5 +18,11 @@ class EditMovieController {
         
         return $viewData;
     }
+    
+    public function RemoveShowTimeById($showTimeId) {
+        $db = new Database();
+        $db->RemoveShowTimeById($showTimeId);
+        $db->CloseConnection();
+    }
 }
 
