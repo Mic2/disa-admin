@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SERVER['membership'])) {
+    require_once('ldap.php');
+}
+
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -17,17 +24,19 @@ and open the template in the editor.
 
         <div class="container-fluid">          
             <div id="headline-wrapper"  class="row">
-                
-                    <h1>DISA Bio Administration</h1>
-                
+                <h1>DISA Bio Administration</h1>                
             </div>
             <div class="row">  
                 <div id="main-menu-wrapper">
                     <div id="main-menu" class="col-md-2">
-                        <a href="statistics"><div class="glyphicon glyphicon-signal"></div>Statistics</a>
-                        <a href="insert-movie"><div class="glyphicon glyphicon-edit"></div>Insert movie</a>
-                        <a href="edit-movie-tabel"><div class="glyphicon glyphicon-eye-open"></div>Show movies</a>
-                        <a href="edit-ticket-tabel"><div class="glyphicon glyphicon-check"></div>Show tickets</a>
+                        <?php if($_SERVER['membership'] == "Management") { ?>
+                            <a href="insert-movie"><div class="glyphicon glyphicon-edit"></div>Insert movie</a>
+                            <a href="edit-movie-tabel"><div class="glyphicon glyphicon-eye-open"></div>Show movies</a>
+                            <a href="statistics"><div class="glyphicon glyphicon-signal"></div>Statistics</a>
+                        <?php } elseif($_SERVER['membership'] == "Cashier") { ?>
+                            <a href="edit-ticket-tabel"><div class="glyphicon glyphicon-check"></div>Show tickets</a>
+                        <?php } ?>
+                        
                     </div>
                 </div>
                 <div id="site-headline" class="col-md-10">                   

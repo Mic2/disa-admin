@@ -1,11 +1,14 @@
 <?php       
     if(!isset($_GET['page'])) {
-        include ('views/statistics.php');
+        include ('views/frontpage.php');
     }
     else {
         
     switch($_GET['page'])
     {
+        case 'frontpage':
+            include ('views/frontpage.php');
+            break;
         case 'statistics':
             include ('views/statistics.php');
             break;
@@ -25,6 +28,6 @@
             include ('views/insertMovie.php');
             break;
         default:
-            include('views/validate.php');
+            include('views/frontpage.php');
     }
 }
