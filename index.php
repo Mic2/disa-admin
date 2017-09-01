@@ -15,16 +15,22 @@ and open the template in the editor.
     </head>
     <body>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div id="main-menu" class="col-md-2">
-                    <a href="statistics">Statistics</a>
-                    <a href="insert-movie">Insert movie</a>
-                    <a href="edit-movie-tabel">Show movies</a>
-                    <a href="edit-ticket-tabel">Show tickets</a>
-                </div>
-                <div id="site-headline" class="col-md-10">
+        <div class="container-fluid">          
+            <div id="headline-wrapper"  class="row">
+                
                     <h1>DISA Bio Administration</h1>
+                
+            </div>
+            <div class="row">  
+                <div id="main-menu-wrapper">
+                    <div id="main-menu" class="col-md-2">
+                        <a href="statistics"><div class="glyphicon glyphicon-signal"></div>Statistics</a>
+                        <a href="insert-movie"><div class="glyphicon glyphicon-edit"></div>Insert movie</a>
+                        <a href="edit-movie-tabel"><div class="glyphicon glyphicon-eye-open"></div>Show movies</a>
+                        <a href="edit-ticket-tabel"><div class="glyphicon glyphicon-check"></div>Show tickets</a>
+                    </div>
+                </div>
+                <div id="site-headline" class="col-md-10">                   
                     <div id="main-content">
                         <?php require_once('includes/pageSwitcher.php'); ?>
                     </div>

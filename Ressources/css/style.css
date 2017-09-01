@@ -1,2 +1,45 @@
+#headline-wrapper {
+    padding: 0;
+    background-color: #222;
+    color: #fff;
+    padding-left: 15px;
+    border-bottom: 3px solid #73e600;
+}
+
+#main-content h1 {
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+#main-menu-wrapper {
+    min-height: 100%;
+    background-color: #222;
+}
+
+#main-menu {
+    background-color: #222;
+    padding: 0;  
+}
+
+#main-menu a{
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    min-width: 100%;
+    background-color: #73e600;
 
 
+
+    color: #fff;
+}
+
+#main-menu a .glyphicon{
+    padding-right: 10px;
+}
+
+#main-menu a:hover, main-menu a .glyphicon {
+    opacity: 0.9;
+    text-decoration: none;
+}
