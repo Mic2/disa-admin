@@ -177,7 +177,7 @@ class Database {
     }
     
     public function GetAllMovieShowTimesTicketReservations() {
-        $query = "SELECT * FROM ShowTime INNER JOIN Ticket ON ShowTime.PK_showTimeId = Ticket.FK_showTimeId";
+        $query = "SELECT * FROM ShowTime INNER JOIN Ticket ON ShowTime.PK_showTimeId = Ticket.FK_showTimeId ORDER BY ShowTime.FK_time";
         $result = mysqli_query($this->con, $query);
 
         $movieNameStats = array();

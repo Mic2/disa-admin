@@ -11,5 +11,18 @@ class StatisticsController {
         return $statistics;
     }
     
+    public function GetShowTimeReservationCount() {
+        $stats = self::GetAllMovieShowTimesTicketReservations();
+        $showTimeArray = array();
+        $showTimePrMovieCount = null;
+               
+        foreach ($stats as $movie => $showTime) {
+            $showTimeArray[$movie] = array_unique($showTimeArray);  
+            $showTimePrMovieCount[$movie] = array_count_values($showTime);
+        }
+
+        return $showTimePrMovieCount;
+    }
+    
 }
 

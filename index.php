@@ -18,7 +18,7 @@ and open the template in the editor.
         <div class="container-fluid">
             <div class="row">
                 <div id="main-menu" class="col-md-2">
-                    <a href="statistics">Home</a>
+                    <a href="statistics">Statistics</a>
                     <a href="insert-movie">Insert movie</a>
                     <a href="edit-movie-tabel">Show movies</a>
                     <a href="edit-ticket-tabel">Show tickets</a>
@@ -31,10 +31,6 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        
-        <?php
-        
-        ?>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="Ressources/JS/movieHandler.js"></script>
