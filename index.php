@@ -35,7 +35,9 @@ and open the template in the editor.
                             <a href="statistics"><div class="glyphicon glyphicon-signal"></div>Statistics</a>
                         <?php } elseif($_SERVER['membership'] == "Cashier") { ?>
                             <a href="edit-ticket-tabel"><div class="glyphicon glyphicon-check"></div>Show tickets</a>
-                        <?php } ?>
+                        <?php } else {
+                            require_once('views/403.php');
+                        } ?>
                         
                     </div>
                 </div>
