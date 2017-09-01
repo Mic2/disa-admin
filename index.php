@@ -33,12 +33,10 @@ and open the template in the editor.
                             <a href="insert-movie"><div class="glyphicon glyphicon-edit"></div>Insert movie</a>
                             <a href="edit-movie-tabel"><div class="glyphicon glyphicon-eye-open"></div>Show movies</a>
                             <a href="statistics"><div class="glyphicon glyphicon-signal"></div>Statistics</a>
-                        <?php } elseif($_SERVER['membership'] == "Cashier") { ?>
+                        <?php } 
+                        if ($_SERVER['membership'] == "Cashier") { ?>
                             <a href="edit-ticket-tabel"><div class="glyphicon glyphicon-check"></div>Show tickets</a>
-                        <?php } else {
-                            require_once('views/403.php');
-                        } ?>
-                        
+                        <?php } ?> 
                     </div>
                 </div>
                 <div id="site-headline" class="col-md-10">                   
