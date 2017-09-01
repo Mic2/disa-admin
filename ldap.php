@@ -38,7 +38,7 @@ foreach($groupsDN as $groupName => $gDN) {
 $value = checkGroupEx($ldapconn, $dn, $gDN);
 
 if($value == true) {
-    $_SERVER['membership'] = $groupName;
+    $_SESSION['membership'] = $groupName;
 }
 
 }

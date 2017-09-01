@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SERVER['membership'])) {
+if(!isset($_SESSION['membership'])) {
     require_once('ldap.php');
 }
 
@@ -29,12 +29,12 @@ and open the template in the editor.
             <div class="row">  
                 <div id="main-menu-wrapper">
                     <div id="main-menu" class="col-md-2">
-                        <?php if($_SERVER['membership'] == "Management") { ?>
+                        <?php if($_SESSION['membership'] == "Management") { ?>
                             <a href="insert-movie"><div class="glyphicon glyphicon-edit"></div>Insert movie</a>
                             <a href="edit-movie-tabel"><div class="glyphicon glyphicon-eye-open"></div>Show movies</a>
                             <a href="statistics"><div class="glyphicon glyphicon-signal"></div>Statistics</a>
                         <?php } 
-                        if ($_SERVER['membership'] == "Cashier") { ?>
+                        if ($_SESSION['membership'] == "Cashier") { ?>
                             <a href="edit-ticket-tabel"><div class="glyphicon glyphicon-check"></div>Show tickets</a>
                         <?php } ?> 
                     </div>
