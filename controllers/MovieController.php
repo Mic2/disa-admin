@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/models/Database.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/HtmlMail.php');
 
 class MovieController {
     
@@ -7,6 +8,14 @@ class MovieController {
         $db = new Database();
         $db->InsertMovie($movie);
         $db->CloseConnection();
+        
+        $mail = new HtmlMail();
+        $mail->SetFromEmail("admin.disa@disa.com");
+        $mail->SetFromText("Disa administrations system");
+        $mail->SetMessage("Der er oprettet ny film: ".$movie->GetMovieName());
+        $mail->SetReplyTo("no-reply@disa.com");
+        $mail->SetSubject("ny film oprettet");
+        $mail->SetTo("management@disa.com");    
     }
     
     public function CheckShowTimeExist($dateTime) {
