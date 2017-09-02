@@ -23,7 +23,7 @@ if($methodToCall == "InsertMovieToDB") {
     $movie->SetRunTime($_POST['runtime']);
     $movie->SetType($_POST['type']);
     $movie->SetDescription($_POST['description']);
-    $movie->SetConverImage($_FILES["coverImage"]["name"]);
+    $movie->SetConverImage("/images/".$_FILES["coverImage"]["name"]);
 
     // Inserting the movie to db
     $imc->InsertMovieToDB($movie, $showTimes);
@@ -81,7 +81,7 @@ if($methodToCall == "EditMovie") {
     $movie->SetType($_POST['type']);
     $movie->SetDescription($_POST['description']);
     if(!empty($_FILES["coverImage"]["name"])) {
-        $movie->SetConverImage($_FILES["coverImage"]["name"]);
+        $movie->SetConverImage("/images/".$_FILES["coverImage"]["name"]);
     } else {
         $movie->SetConverImage("dont-update");
     }
