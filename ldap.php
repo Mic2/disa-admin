@@ -15,8 +15,8 @@ $ldappass = 'Abc1234';
 // Create connection
 $ldapconn = ldap_connect($ldaphost, $ldapport)
 or die("Could not connect to ldap");
-ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
-ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+//ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
+//ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
 
 // Bind to it
 if ($ldapconn) {
