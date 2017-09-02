@@ -6,7 +6,6 @@ if(!isset($_SESSION['membership'])) {
     	header('Location: 403.php');
     }
 }
-?>
 require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/TicketController.php');
 
 $tc = new TicketController();
