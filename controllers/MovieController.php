@@ -8,14 +8,15 @@ class MovieController {
         $db = new Database();
         $db->InsertMovie($movie);
         $db->CloseConnection();
-        
-        $mail = new HtmlMail();
-        $mail->SetFromEmail("admin.disa@disa.com");
+
+	$mail = new HtmlMail();
+        $mail->SetFromEmail("no-reply@disa.com");
         $mail->SetFromText("Disa administrations system");
-        $mail->SetMessage("Der er oprettet ny film: ".$movie->GetMovieName());
+        $mail->SetMessage("New movie is created: ".$movie->GetMovieName());
         $mail->SetReplyTo("no-reply@disa.com");
-        $mail->SetSubject("ny film oprettet");
-        $mail->SetTo("management@disa.com");    
+        $mail->SetSubject("New movie created");
+        $mail->SetTo("ll@disa.com");            
+	$mail->SendMail();
     }
     
     public function CheckShowTimeExist($dateTime) {
