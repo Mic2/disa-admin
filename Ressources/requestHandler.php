@@ -29,7 +29,7 @@ if($methodToCall == "InsertMovieToDB") {
     $imc->InsertMovieToDB($movie, $showTimes);
 
     // Uploading the coverImage
-    $target_dir = "uploads/";
+    $target_dir = "/var/www/disa/disa/bin/Release/PublishOutput/wwwroot/images/";
     $target_file = $target_dir . basename($_FILES["coverImage"]["name"]);
     $uploadOk = 1;
 
@@ -90,7 +90,7 @@ if($methodToCall == "EditMovie") {
 
     if($movie->GetCoverImage() != 'dont-update') {
         // Uploading the coverImage
-        $target_dir = "uploads/";
+        $target_dir = "/var/www/disa/disa/bin/Release/PublishOutput/wwwroot/images/";
         $target_file = $target_dir . basename($_FILES["coverImage"]["name"]);
         $uploadOk = 1;
 
