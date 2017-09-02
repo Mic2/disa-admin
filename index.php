@@ -41,7 +41,7 @@ and open the template in the editor.
                 </div>
                 <div id="site-headline" class="col-md-10">                   
                     <div id="main-content">
-                        <?php require_once('includes/pageSwitcher.php'); ?>
+                        <?php require_once('views/pageSwitcher.php'); ?>
                     </div>
                 </div>
             </div>
