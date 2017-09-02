@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['membership'])) {
     require_once('ldap.php');
     if(empty($_SESSION['membership'])) {
-    	header('Location: views/403.php');
+    	header('Location: 403.php');
     }
 }
 
@@ -32,7 +32,7 @@ and open the template in the editor.
             <div class="row">  
                 <div id="main-menu-wrapper">
                     <div id="main-menu" class="col-md-2">
-			<a href="frontpage"><div class="glyphicon glyphicon-home"></div></a>
+			<a href="frontpage"><div class="glyphicon glyphicon-home"></div>Home</a>
                         <?php if($_SESSION['membership'] == "Management") { ?>
                             <a href="insert-movie"><div class="glyphicon glyphicon-edit"></div>Insert movie</a>
                             <a href="edit-movie-tabel"><div class="glyphicon glyphicon-eye-open"></div>Show movies</a>

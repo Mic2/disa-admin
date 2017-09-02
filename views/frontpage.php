@@ -8,7 +8,9 @@ if(!isset($_SESSION['membership'])) {
 }
 ?>
 <div class="row">
+  <div class="col-md-12">
     <h1>Administration for Disa Bio</h1>
     <p>On the left you can see the choices that your account has.</p>
+  </div>
 </div>
 
