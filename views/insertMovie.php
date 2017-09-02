@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['membership'])) {
+    require_once('ldap.php');
+    if(empty($_SESSION['membership'])) {
+    	header('Location: views/403.php');
+    }
+}
+?>
 <h1>Insert Movie</h1>
 <div id="post-response"></div>
 <div class="row">

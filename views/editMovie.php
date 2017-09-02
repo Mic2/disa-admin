@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(!isset($_SESSION['membership'])) {
+    require_once('ldap.php');
+    if(empty($_SESSION['membership'])) {
+    	header('Location: views/403.php');
+    }
+}
 require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/MovieController.php');
 $editController = new MovieController();
 $movieDetails = $editController->GetMovieDetails(rawurldecode($_GET['movieName']));

@@ -2,6 +2,9 @@
     $page = $_GET['page']; 
     switch($page)
     {
+        case 'frontpage':
+            include ('frontpage.php');
+            break;
         case 'statistics':
             include ('statistics.php');
             break;
@@ -21,6 +24,6 @@
             include ('insertMovie.php');
             break;
         default:
-            include('statistics.php');
+            include('frontpage.php');
     }
 
