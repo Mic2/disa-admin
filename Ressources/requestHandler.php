@@ -9,7 +9,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/models/Movie.php');
 $controller = $_POST['controller'];
 $methodToCall = $_POST['methodName'];
 
-/*Check if we have the insertMovieController*/
+/*Check if we have the MovieController*/
 if($controller == "MovieController") {
     
 if($methodToCall == "InsertMovieToDB") {

@@ -9,8 +9,8 @@ $samaccountname =  $samaccountnameArray[0];
 // The connection values for the Ldap connection
 $ldaphost = "ldap://192.168.0.100";  // your ldap servers
 $ldapport = 389;
-$ldaprdn = 'Administrator';
-$ldappass = 'Abc1234';
+$ldaprdn = '<username>';
+$ldappass = '<password>';
 
 // Create connection
 $ldapconn = ldap_connect($ldaphost, $ldapport)
