@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION['membership'])) {
+if(!isset($_SESSION['membership']) || $_SESSION['membership'] != "Cashier") {
     require_once('ldap.php');
-    if(empty($_SESSION['membership'])) {
+    if(empty($_SESSION['membership']) || $_SESSION['membership'] != "Cashier") {
     	header('Location: 403.php');
     }
 }
