@@ -13,7 +13,7 @@ class Ldap {
         // Create connection
         $this->ldapconn = ldap_connect($this->ldaphost, $this->ldapport) or die("Could not connect to ldap");
         ldap_set_option($this->ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+        ldap_set_option($this->ldapconn, LDAP_OPT_REFERRALS, 0);
 
         // Bind to it
         if ($this->ldapconn) {
@@ -84,7 +84,7 @@ class Ldap {
                     if ($entries[0]['memberof'][$i] == $groupdn) {
                         return TRUE; 
                     }
-                    elseif (checkGroupEx($ad, $entries[0]['memberof'][$i], $groupdn)) { 
+                    elseif (self::checkGroupEx($ad, $entries[0]['memberof'][$i], $groupdn)) { 
                         return TRUE; 
                     }
                 }
