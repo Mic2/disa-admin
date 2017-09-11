@@ -4,8 +4,8 @@ class Ldap {
     
     private $ldaphost = "ldap://192.168.0.100";  // your ldap servers
     private $ldapport = 389;
-    private $ldaprdn = '<username>';
-    private $ldappass = '<password>';
+    private $ldaprdn = 'Administrator';
+    private $ldappass = 'Abc1234';
     private $ldapbind = null;
     private $ldapconn = null;
 
@@ -96,5 +96,22 @@ class Ldap {
         ldap_close($this->ldapconn);
     }
     
+    public function getgroupmenbers(){
+    $dn = "OU=IMPL Grupper,DC=DISA,DC=COM"; //the object itself instead of the top search level as in ldap_search
+    $results = ldap_search($this->ldapconn,$dn, "CN=Management-IM-G");
+    $entrys = ldap_get_entries($this->ldapconn, $results);
+    $members = $entrys[0]['member'];
+    $mailList = array();
+    foreach($members as $index => $member){
+        if($index !== "count"){  
+            $filter="(objectclass=*)"; // this command requires some filter
+            $justthese = array("mail"); //the attributes to pull, which is much more efficient than pulling all attributes if you don't do this
+            $sr= ldap_read($this->ldapconn, $member, $filter, $justthese);
+            $entry = ldap_get_entries($this->ldapconn, $sr);
+            array_push($mailList, $entry[0]['mail'][0]);
+        }    
+    }
+    return $mailList;
+    }
 }
 
